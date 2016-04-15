@@ -30,7 +30,56 @@ This is library is to be used in the building of fly arounds using video exporte
 
 ##Creating your JSON
 
-Flythrough is powered by an array of JSON objects that you'll find on line 4of the flythrough.js file, assigned to the variable `frames`. Each JSON object within the array corresponds to either a waypoint in your flythrough video, or an image that you'd like to display between waypoints. **Think of these as frames, for the purposes of this document** Each of those JSON objects have some required and optional keys and values depending on the whether that JSON object is a waypoint or image. Let's take a look at each:  
+Flythrough is powered by an array of JSON objects that you'll find on line 4 of the flythrough.js file, assigned to the variable `frames`. Each JSON object within the array corresponds to either a waypoint in your flythrough video, or an image that you'd like to display between waypoints. **Think of these as frames, for the purposes of this document**
+
+######Sample JSON
+
+```json
+var frames = [
+		{
+			number: 0,
+			type: "waypoint",
+			start: 0,
+			end: 6,
+			overlayHead: "This is overlayHead 1",
+			overlayText: "This is overlay text 1",
+			satCredit: "Satelitte imagery: 2016 Digital Globe; 2016 Cnes/Spot Image; Data SIO, NOAA, U.S. Navy, NGA, GEBCO; Image Landsat"
+		},
+		{
+			number: 1,
+			type: "waypoint",
+			start: 6,
+			end: 9,
+			overlayHead: "This is overlayHead 2",
+			overlayText: "This is overlay text 2",
+			labels: [{text: "Ranchhouse", x: "48vw", y: "33vw"}, {text: "Road", x: "10vw", y: "37.5vw"}],
+			satCredit: "Satelitte imagery: 2016 Digital Globe"
+		},
+		{
+			number: 2,
+			type: "image",
+			imagePath: "/images/_testImage.jpg",
+			cutline: "This is the image cutline",
+			start: 8,
+			end: 12
+		},
+		{
+			number: 2,
+			type: "waypoint",
+			start: 12,
+			end: 16,
+			overlayHead: "This is overlayHead 3",
+			overlayText: "This is overlay text 3",
+			satCredit: "Satelitte imagery: 2016 Digital Globe; 2016 Cnes/Spot Image; Image Landsat"
+		}
+	];
+
+```
+
+
+
+
+Each of those JSON objects have some required and optional keys and values depending on the whether that JSON object is a waypoint or image. Let's take a look at each:  
 
 <br />
 
