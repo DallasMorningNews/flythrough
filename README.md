@@ -34,7 +34,7 @@ Flythrough is powered by an array of JSON objects that you'll find on line 4 of 
 
 ######Sample JSON
 
-```json
+```javascript
 var frames = [
 		{
 			number: 0,
