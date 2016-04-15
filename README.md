@@ -1,3 +1,6 @@
+Created by John Hancock. By all means, have your way with any of this code. Lastly, don't hesitate to submit bug reports or fix request. Thanks!
+
+
 ## Intro
 
 This is library is to be used in the building of fly arounds using video exported from Google Earth. In this library, you'll find the html, css and jquary you'll need to build functioning fly arounds. While most of the code is written for you, you will need to be familiar with [JSON (Javascript Object Notation)](http://www.w3schools.com/json/), and a little bit of HTML.
@@ -11,7 +14,6 @@ This is library is to be used in the building of fly arounds using video exporte
 **IMAGES:** If you have any images you want to display within your flyaround, you'll need to supply those yourself. For best results, you'll want to crop your image to be the same aspect ratio as your video. For the purposes of this plugin, video is assumed to be at an aspect ratio of .5625 (1280x720). If you want to use a different aspect ratio, there are a few other things to change. Check the tips and tricks below.
 
 **VIDEO EDITING SOFTWARE:** Video editing software is optional. If you wanted to edit your video to label certain places within your flyaround, you can do so in a program such as After Effects, but it's not necessary. The library allows for including HTML labels.
-
 
 
 
@@ -74,12 +76,18 @@ Flythrough is powered by an array of JSON objects that you'll find on line 4of t
 Labels can be used on waypoint frames to point out specific features or locations within the waypoint of that frame. The `labels` key takes the form of a JSON array, with each object in the array requiring three keys (all of which are required): `text`, `x` and `y`. Pro tip: Do not include too many labels on a single frame. It should be find at larger screens, but on smaller screens, things could get crowded.
 
 `text`: **(string)** Text that appears in the label. Shorter = better.
+
 `x`: **(string)** The x position of the label in viewport width (vw) units.
+
 `y`: **(string)** The y position of the label in viewport width (vw) units.
 
-A word about labels: You may be wondering why the `y` position is listed in vw, instead of vh, or why we're using vw instead of percentages. VW is used to for the `y` position to maintain the label's position in respect to the flythrough's aspect ratio. Placing these labels will take some trial and error, so be patient.
-
+**A word about labels:** You may be wondering why the `y` position is listed in vw, instead of vh, or why we're using vw instead of percentages. VW is used to for the `y` position to maintain the label's position in respect to the flythrough's aspect ratio. Placing these labels will take some trial and error, so be patient.
 
 
 
 ##Tips and Tricks
+*Google Earth's fly throughs will "wait" at each waypoint for a number of seconds before moving on to the other. To have overlays appear shortly after the waypoint is reached, list the `end` time for each waypoint the moment the animation pauses at that location.
+
+*In the tutorial listed above by Tom Nurse and Nassos Stylianou, these fine fellows instruct you on how to change the time your animation waits between each waypoint. They suggest four seconds, but I would recommend one or two, to prevent what are perceived delays of your animation playing but not actually doing anything as it waits at each waypoint.
+
+*If you use a video size with an aspect ratio different than .5625, there are a couple lines you can change in flythrough.css that will fix any issues you may be experiencing. First, convert your aspect ratio to vw by multiplying by 100. On line 36, change the `height` of .titleCard to your new value in vw. Likewise, on line 241, sub the 56.25vw for your value.
