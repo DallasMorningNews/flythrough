@@ -30,12 +30,13 @@ This is library is to be used in the building of fly arounds using video exporte
 
 Flythrough is powered by an array of JSON objects that you'll find on line 4of the flythrough.js file, assigned to the variable `frames`. Each JSON object within the array corresponds to either a waypoint in your flythrough video, or an image that you'd like to display between waypoints. **Think of these as frames, for the purposes of this document** Each of those JSON objects have some required and optional keys and values depending on the whether that JSON object is a waypoint or image. Let's take a look at each:  
 
+<br />
+
 #####Required keys for all frames (with value type in bold)
 `type`: **(string)** This will be either `waypoint` or `image`, depending on if that frame of your flythrough is a waypoint in the video, or an image you want to display over the flythrough.
 
 `end`: **(integer)** This is the time in seconds in the flythrough that you'd like to pause the flythrough animation at for that frame. On `image` frames, it's recommended that you use the time the next waypoint frame begins.
 
-<br />
 <br />
 
 #####Optional keys for all frames
@@ -44,13 +45,10 @@ Flythrough is powered by an array of JSON objects that you'll find on line 4of t
 `start`: **(integer)** The start time of the move for the frame. While this doesn't control anything specifically, it can help you keep track of where frames begin and end.
 
 <br />
-<br />
 
 #####Required keys for Waypoint frames
 `satCredit`: **(string)** Google requires attribution for satellite imagery to be displayed. At large screens this credit information is easily readable within the video itself. At smaller sizes, this attribution will be appended below the flythrough animation. Frames that are `type: "image"` do not need the `satCredit` key.
 
-
-<br />
 <br />
 
 #####Optional keys for Waypoint frames
@@ -61,18 +59,15 @@ Flythrough is powered by an array of JSON objects that you'll find on line 4of t
 `labels`: **(array of JSON objects)** Applies text labels to supplied positions over the frame. Read more about labels below.
 
 <br />
-<br />
 
 #####Required keys for Image frames
 `imagepath`: **(string)** The relative path to the image you want to display in that frame.
 
 <br />
-<br />
 
 #####Optional keys for Image frames
 `cutline`: **(string)** A cutline of caption to be displayed below the image. This could be used to describe the image itself, for photo credit attribution, or both
 
-<br />
 <br />
 
 #####Labels
