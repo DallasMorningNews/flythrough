@@ -32,10 +32,12 @@ Flythrough is powered by an array of JSON objects that you'll find on line 4of t
 
 #####Required keys for all frames (with value type in bold)
 `type`: **(string)** This will be either `waypoint` or `image`, depending on if that frame of your flythrough is a waypoint in the video, or an image you want to display over the flythrough.
+
 `end`: **(integer)** This is the time in seconds in the flythrough that you'd like to pause the flythrough animation at for that frame. On `image` frames, it's recommended that you use the time the next waypoint frame begins.
 
 #####Optional keys for all frames
 `number`: **(integer)** The number of the frame (starting at 0).
+
 `start`: **(integer)** The start time of the move for the frame. While this doesn't control anything specifically, it can help you keep track of where frames begin and end.
 
 #####Required keys for Waypoint frames
@@ -43,7 +45,9 @@ Flythrough is powered by an array of JSON objects that you'll find on line 4of t
 
 #####Optional keys for Waypoint frames
 `overlayHead`: **(string)** Applies a headline to the text overlay that is displayed over that frame
+
 `overlayText`: **(string)** Applies a paragraph of text to the text overlay that is displayed over that frame. Don't go crazy. Two to three sentences is best.
+
 `labels`: **(array of JSON objects)** Applies text labels to supplied positions over the frame. Read more about labels below.
 
 #####Required keys for Image frames
@@ -61,12 +65,6 @@ Labels can be used on waypoint frames to point out specific features or location
 `y`: **(string)** The y position of the label in viewport width (vw) units.
 
 A word about labels: You may be wondering why the `y` position is listed in vw, instead of vh, or why we're using vw instead of percentages. VW is used to for the `y` position to maintain the label's position in respect to the flythrough's aspect ratio. Placing these labels will take some trial and error, so be patient.
-
-
-
-
-
-
 
 
 
