@@ -131,9 +131,15 @@ $(document).ready(function() {
 
 	// checking if current frame has overlays and building out the overlays
 	function checkOverlays() {
-		if (frames[frame].overlayHead !== undefined) {
+		if (frames[frame].overlayHead !== undefined ) {
 			$(".textOverlay h4").html(frames[frame].overlayHead);
+		}
+
+		if (frames[frame].overlayText !== undefined) {
 			$(".textOverlay p").html(frames[frame].overlayText);
+		}
+
+		if (frames[frame].overlayHead !== undefined || frames[frame].overlayText !== undefined) {
 			$(".textOverlay").fadeIn(250);
 		}
 	}
@@ -158,7 +164,11 @@ $(document).ready(function() {
 				$(".label").remove(); //remove all labels
 
 				$(".imageOverlay img").attr("src", frames[frame].imagePath).attr("alt", frames[frame].cutline); // update the image overlay img tag with the src path and alt text
-				$(".imageOverlay .cutline").html(frames[frame].cutline); // update the image overlay cutline
+
+				if (frames[frame].cutline !== undefined) {
+					$(".imageOverlay .cutline").html(frames[frame].cutline); // update the image overlay cutline
+				}
+
 				$(".imageOverlay").fadeIn(250); // display the image overlay
 
 				video[0].currentTime = frames[frame].end; // jump the video's current time to the current frame's end
