@@ -12,13 +12,15 @@ This is library is to be used in the building of fly arounds using video exporte
 
 **VIDEO EDITING SOFTWARE:** Video editing software is optional. If you wanted to edit your video to label certain places within your flyaround, you can do so in a program such as After Effects, but it's not necessary. The library allows for including HTML labels.
 
+
+
 ##Setup
 
 **HTML:** Place the contents of the index.html file anywhere within your html document. The flythrough is designed to be the full width of your viewport, so make any accommodations that you need to within your code.
 
 **CSS and JS** Copy the flythrough.css and flythrough.js files to your own `css` and `javascript` directories. Be sure to include calls to those files within your html document.
 
-**BUTTON IMAGES**: The next and previous buttons are svg images that should be included within your images directory. If your images directory is names something other than `images`, be sure to change the path for the buttons within the supplied flythrough html. 
+**BUTTON IMAGES**: The next and previous buttons are svg images that should be included within your images directory. If your images directory is names something other than `images`, be sure to change the path for the buttons within the supplied flythrough html.
 
 
 ##Creating your JSON
