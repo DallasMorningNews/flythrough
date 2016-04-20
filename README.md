@@ -27,7 +27,7 @@ This plugin is to be used in the building of fly arounds using video exported fr
 
 ##Creating your JSON
 
-Flythrough is powered by an array of JSON objects within your own javascript file (in the sample below, this array is assigned to the variable name `frames`) . Each JSON object within the array corresponds to either a waypoint in your flythrough video, or an image that you'd like to display between waypoints. **Think of these as frames, for the purposes of this document.**
+Flythrough is powered by an array of JSON objects defined in your javascript file (in the sample below, this array is assigned to the variable name `sampleJSON`). Each JSON object within the array corresponds to either a waypoint in your flythrough video, or an image that you'd like to display between waypoints. **Think of these as frames, for the purposes of this document.**
 
 ######Sample JSON
 
@@ -73,7 +73,7 @@ var sampleJSON = [
 
 ```
 
-Once you have your JSON set up, all you need to do is call ``.flythrough` on your flythrough container, passing the variable name of your JSON array as the value of frames key within an object. For example:
+Once you have your JSON set up, all you need to do is call ``.flythrough` on your flythrough container, passing the variable name of your JSON array as the value of the frames key within an object. For example:
 
 ```javascript
 $("#yourid").flythrough({frames: sampleJSON});
@@ -88,12 +88,12 @@ Each of those JSON objects have some required and optional keys and values depen
 #####Required keys for all frames (with value type in bold)
 `type`: **(string)** This will be either `waypoint` or `image`, depending on if that frame of your flythrough is a waypoint in the video, or an image you want to display over the flythrough.
 
-`end`: **(integer)** This is the time in seconds in the flythrough that you'd like to pause the flythrough animation at for that frame. On `image` frames, it's recommended that you use the time the next waypoint frame begins.
+`end`: **(integer)** This is the time in seconds in the flythrough that you'd like to pause the flythrough animation for that frame. On `image` frames, it's recommended that you use the time the next waypoint frame begins.
 
 <br />
 
 #####Optional keys for all frames
-`number`: **(integer)** The number of the frame (starting at 0).
+`number`: **(integer)** The number of the frame (starting at 0). This is used mainly to maintain sanity on long JSON arrays.
 
 `start`: **(integer)** The start time of the move for the frame. While this doesn't control anything specifically, it can help you keep track of where frames begin and end.
 
@@ -105,7 +105,7 @@ Each of those JSON objects have some required and optional keys and values depen
 <br />
 
 #####Optional keys for Waypoint frames
-`overlayHead`: **(string)** Applies a headline to the text overlay that is displayed over that frame
+`overlayHead`: **(string)** Applies a headline to the text overlay that is displayed over that frame.
 
 `overlayText`: **(string)** Applies a paragraph of text to the text overlay that is displayed over that frame. Don't go crazy. Two to three sentences is best.
 
@@ -124,7 +124,7 @@ Each of those JSON objects have some required and optional keys and values depen
 <br />
 
 #####Labels
-Labels can be used on waypoint frames to point out specific features or locations within the waypoint of that frame. The `labels` key takes the form of a JSON array, with each object in the array requiring three keys (all of which are required): `text`, `x` and `y`. Pro tip: Do not include too many labels on a single frame. It should be find at larger screens, but on smaller screens, things could get crowded.
+Labels can be used on waypoint frames to point out specific features or locations within the waypoint of that frame. The `labels` key takes the form of a JSON array, with each object in the array requiring three keys (all of which are required): `text`, `x` and `y`. Pro tip: Do not include too many labels on a single frame. It should be fine at larger screens, but on smaller screens, things could get crowded.
 
 `text`: **(string)** Text that appears in the label. Shorter = better.
 
@@ -143,4 +143,4 @@ Labels can be used on waypoint frames to point out specific features or location
 
 *In the tutorial listed above by Tom Nurse and Nassos Stylianou, these fine fellows instruct you on how to change the time your animation waits between each waypoint. They suggest four seconds, but I would recommend one or two, to prevent what are perceived delays of your animation playing but not actually doing anything as it waits at each waypoint.
 
-*If you use a video size with an aspect ratio different than .5625, there are a couple lines you can change in flythrough.css that will fix any issues you may be experiencing. First, convert your aspect ratio to vw by multiplying by 100. On line 36, change the `height` of .titleCard to your new value in vw. Likewise, on line 241, sub the 56.25vw for your value.
+*If you use a video size with an aspect ratio different than .5625, there are a couple lines you can change in flythrough.css that will fix any issues you may be experiencing. First, convert your aspect ratio to vw by multiplying by 100. On line 36, change the `height` of ``.titleCard` to your new value in vw. Likewise, on line 241, sub the 56.25vw for your value.
