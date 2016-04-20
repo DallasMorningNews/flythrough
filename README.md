@@ -1,4 +1,4 @@
-Created by John Hancock. By all means, have your way with any of this code. Lastly, don't hesitate to submit bug reports or fix request. Thanks!
+Created by John Hancock. By all means, have your way with any of this code. Lastly, don't hesitate to submit bug reports or fix requests. Thanks!
 
 
 ## Intro
