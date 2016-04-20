@@ -3,7 +3,7 @@
 /// FLYTHROUGHS //////////////////////
 //////////////////////////////////////
 */
-video {width: 100%;}
+.flyVideo {width: 100%;}
 
 .flythrough {
   position: relative;
@@ -250,13 +250,13 @@ video {width: 100%;}
 }
 .flyButton:hover {opacity: 1;}
 
-#play {
+.play {
   border-top-left-radius: 3px;
   border-bottom-left-radius: 3px;
   right: 0;
 }
 
-#rewind {
+.rewind {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   left: 0;
