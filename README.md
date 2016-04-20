@@ -3,7 +3,7 @@ Created by John Hancock. By all means, have your way with any of this code. Last
 
 ## Intro
 
-This is library is to be used in the building of fly arounds using video exported from Google Earth. In this library, you'll find the html, css and jquary you'll need to build functioning fly arounds. While most of the code is written for you, you will need to be familiar with [JSON (Javascript Object Notation)](http://www.w3schools.com/json/), and a little bit of HTML.
+This plugin is to be used in the building of fly arounds using video exported from Google Earth. In this plugin, you'll find the sample html setup, css and javascript you'll need to build functioning fly arounds. While most of the code is written for you, you will need to be familiar with [JSON (Javascript Object Notation)](http://www.w3schools.com/json/), and a little bit of HTML.
 
 #### Other things you'll need
 
@@ -16,26 +16,23 @@ This is library is to be used in the building of fly arounds using video exporte
 **VIDEO EDITING SOFTWARE:** Video editing software is optional. If you wanted to edit your video to label certain places within your flyaround, you can do so in a program such as After Effects, but it's not necessary. The library allows for including HTML labels.
 
 
-
 ##Setup
 
 **HTML:** Place the contents of the index.html file anywhere within your html document. The flythrough is designed to be the full width of your viewport, so make any accommodations that you need to within your code.
 
-**CSS and JS:** Copy the flythrough.css and flythrough.js files to your own `css` and `javascript` directories. Be sure to include calls to those files within your html document.
+**CSS and JS:** Copy the flythrough.css and flythrough.js files (or the minified versions) to your own `css` and `javascript` directories. Be sure to include calls to those files within your html document.
 
-**BUTTON IMAGES:** The next and previous buttons are svg images that should be included within your images directory. If your images directory is names something other than `images`, be sure to change the path for the buttons within the supplied flythrough html.
-
-
+**BUTTON IMAGES:** The next and previous buttons are svg images that should be included within your images directory. If your images directory is named something other than `images`, be sure to change the path for the buttons within the supplied flythrough html.
 
 
 ##Creating your JSON
 
-Flythrough is powered by an array of JSON objects that you'll find on line 4 of the flythrough.js file, assigned to the variable `frames`. Each JSON object within the array corresponds to either a waypoint in your flythrough video, or an image that you'd like to display between waypoints. **Think of these as frames, for the purposes of this document**
+Flythrough is powered by an array of JSON objects within your own javascript file (in the sample below, this array is assigned to the variable name `frames`) . Each JSON object within the array corresponds to either a waypoint in your flythrough video, or an image that you'd like to display between waypoints. **Think of these as frames, for the purposes of this document.**
 
 ######Sample JSON
 
 ```javascript
-var frames = [
+var sampleJSON = [
 		{
 			number: 0,
 			type: "waypoint",
@@ -76,8 +73,13 @@ var frames = [
 
 ```
 
+Once you have your JSON set up, all you need to do is call ``.flythrough` on your flythrough container, passing the variable name of your JSON array as the value of frames key within an object. For example:
 
+```javascript
+$("#yourid").flythrough({frames: sampleJSON});
+```
 
+##JSON COMPONENTS
 
 Each of those JSON objects have some required and optional keys and values depending on the whether that JSON object is a waypoint or image. Let's take a look at each:  
 
@@ -131,6 +133,8 @@ Labels can be used on waypoint frames to point out specific features or location
 `y`: **(string)** The y position of the label in viewport width (vw) units.
 
 **A word about labels:** You may be wondering why the `y` position is listed in vw, instead of vh, or why we're using vw instead of percentages. VW is used to for the `y` position to maintain the label's position in respect to the flythrough's aspect ratio. Placing these labels will take some trial and error, so be patient.
+
+
 
 
 
