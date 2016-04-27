@@ -18,6 +18,8 @@
 
 		var self = this;
 
+    var direction = "";
+
 
 		// determine if we are going forward or backwards
 
@@ -54,7 +56,8 @@
 
 		//advance the flythrough
 		function advanceFrames() {
-
+      // set the direction that we're moving. This is used in the checkImage function
+      direction = "play";
 			// if the frame is a waypoint, play the video to the next waypoint
 			if (settings.frames[frame].type === "waypoint") {
 				self.children(".overlay").fadeOut(250); // hide all the overlays before the animation starts
@@ -62,6 +65,11 @@
 				self.children(".satCredit").text(settings.frames[frame].satCredit); // update satelitte imagery credit
 				video[0].play(); // start the animation
 			}
+
+      // check to see if the next frame is an image, and if it is, preload that image
+      if (settings.frames[frame + 1].type === "image" || settings.frames[frame + 1] >= settings.frames.length) {
+        $.preloadImages(settings.frames[frame + 1].imagePath);
+      }
 
 			checkImage(); // if the frame is an image, display that frame
 
@@ -87,6 +95,8 @@
 
 
 		function rewindFrames() {
+      // set the direction that we're moving. This is used in the checkImage function
+      direction = "rewind";
 			if (settings.frames[frame].type === "waypoint") {
 				self.children(".overlay").fadeOut(250); // hide all the overlays before the animation starts
 				self.children(".label").remove(); // remove all labels
@@ -143,7 +153,7 @@
 		// checking if the current frame is an image
 		function checkImage() {
 			if (settings.frames[frame].type === "image") {
-					self.children(".overlay").fadeOut(250); // hide all the overlays
+					self.children(".textOverlay").fadeOut(250); // hide all the overlays
 					self.children(".label").remove(); //remove all labels
 
 					self.find(".imageOverlay img").attr("src", settings.frames[frame].imagePath).attr("alt", settings.frames[frame].cutline); // update the image overlay img tag with the src path and alt text
@@ -152,7 +162,12 @@
 						self.find(".imageOverlay .cutline").html(settings.frames[frame].cutline); // update the image overlay cutline
 					}
 
-					self.children(".imageOverlay").fadeIn(250); // display the image overlay
+          if (direction === "play" && settings.frames[frame - 1].type !== "image") {
+				    self.children(".imageOverlay").fadeIn(250); // display the image overlay
+          } else if (direction === "rewind" && settings.frames[frame + 1].type !== "image") {
+            self.children(".imageOverlay").fadeIn(250); // display the image overlay
+          }
+
 
 					video[0].currentTime = settings.frames[frame].end; // jump the video's current time to the current frame's end
 
@@ -160,6 +175,11 @@
 					bindClick();
 			}
 		}
+
+    // preloading image function
+    $.preloadImages = function() {
+      $("<img />").attr("src", arguments[0]);
+    };
 
 		// check the buttons for the first time
 		checkButtons();
