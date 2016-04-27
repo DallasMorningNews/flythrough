@@ -115,11 +115,11 @@
 		// checking if current frame has overlays and building out the overlays
 		function checkOverlays() {
 			if (settings.frames[frame].overlayHead !== undefined ) {
-				self.children(".textOverlay h4").html(settings.frames[frame].overlayHead);
+				self.find(".textOverlay h4").html(settings.frames[frame].overlayHead);
 			}
 
 			if (settings.frames[frame].overlayText !== undefined) {
-				self.children(".textOverlay p").html(settings.frames[frame].overlayText);
+				self.find(".textOverlay p").html(settings.frames[frame].overlayText);
 			}
 
 			if (settings.frames[frame].overlayHead !== undefined || settings.frames[frame].overlayText !== undefined) {
@@ -135,7 +135,7 @@
 					label +="<span class='label' style='top: " + settings.frames[frame].labels[k].y + "; left: " + settings.frames[frame].labels[k].x + ";'>";
 					label += settings.frames[frame].labels[k].text;
 					label += "</span>";
-					self.children(".flythrough").append(label);
+					self.append(label);
 				});
 			}
 		}
@@ -146,10 +146,10 @@
 					self.children(".overlay").fadeOut(250); // hide all the overlays
 					self.children(".label").remove(); //remove all labels
 
-					self.children(".imageOverlay img").attr("src", settings.frames[frame].imagePath).attr("alt", settings.frames[frame].cutline); // update the image overlay img tag with the src path and alt text
+					self.find(".imageOverlay img").attr("src", settings.frames[frame].imagePath).attr("alt", settings.frames[frame].cutline); // update the image overlay img tag with the src path and alt text
 
 					if (settings.frames[frame].cutline !== undefined) {
-						self.children(".imageOverlay .cutline").html(settings.frames[frame].cutline); // update the image overlay cutline
+						self.find(".imageOverlay .cutline").html(settings.frames[frame].cutline); // update the image overlay cutline
 					}
 
 					self.children(".imageOverlay").fadeIn(250); // display the image overlay
