@@ -67,7 +67,7 @@
 			}
 
       // check to see if the next frame is an image, and if it is, preload that image
-      if (settings.frames[frame + 1].type === "image" || settings.frames[frame + 1] >= settings.frames.length) {
+      if (settings.frames[frame + 1] < settings.frames.length && settings.frames[frame + 1].type === "image") {
         $.preloadImages(settings.frames[frame + 1].imagePath);
       }
 
