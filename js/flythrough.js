@@ -2,6 +2,10 @@
 
 	$.fn.flythrough = function(frameObj) {
 
+		//////////////////////////////////////////////////////
+		////  PLUGIN SETUP ///////////////////////////////////
+		//////////////////////////////////////////////////////
+
 	  // configure your flythrough frames below
 		var settings = $.extend({
 			frames: []
@@ -11,18 +15,29 @@
 			console.error("Frames must be an array with at least one object.");
 		}
 
-		//replace all refrences to frames to settings.frame
+		//////////////////////////////////////////////////////
+		////  VARIABLE SETUP /////////////////////////////////
+		//////////////////////////////////////////////////////
 
 		var video = this.children(".flyVideo");
 		var frame = 0;
-
 		var self = this;
-
     var direction = "";
 
 
-		// determine if we are going forward or backwards
 
+		//////////////////////////////////////////////////////
+		////  FUNCTIONS SETUP ////////////////////////////////
+		//////////////////////////////////////////////////////
+
+
+		/*
+		------------------------------------------------------
+		CHECK DIRECTION
+		------------------------------------------------------
+		*/
+
+		// determine if we are going forward or backwards
 		function checkDirection(thisObj) {
 			// unbind the click function from the buttons to prevent clicks in mid animation
 			self.children(".flyButton").unbind("click");
@@ -41,8 +56,13 @@
 		}
 
 
-		// if we are at the beginning or end of the flythrough, we're going to hide the corresponding buttons
+		/*
+		------------------------------------------------------
+		CHECK BUTTONS
+		------------------------------------------------------
+		*/
 
+		// if we are at the beginning or end of the flythrough, we're going to hide the corresponding buttons
 		function checkButtons() {
 			if (frame === 0) {
 				self.children(".rewind").hide(); // hide the rewind button on the first frame
@@ -54,7 +74,12 @@
 		}
 
 
-		//advance the flythrough
+		/*
+		------------------------------------------------------
+		ADVANCE FRAMES
+		------------------------------------------------------
+		*/
+
 		function advanceFrames() {
       // set the direction that we're moving. This is used in the checkImage function
       direction = "play";
@@ -75,6 +100,13 @@
 
 		}
 
+
+		/*
+		------------------------------------------------------
+		FRAME CONTROL
+		------------------------------------------------------
+		*/
+
 		// this function runs as the video is playing. it controls the pausing of the animation at the correct times
 		// along with displaying the correct overlays and labels
 		function frameControl() {
@@ -93,12 +125,17 @@
 		}
 
 
+		/*
+		------------------------------------------------------
+		REWIND FRAMES
+		------------------------------------------------------
+		*/
 
 		function rewindFrames() {
       // set the direction that we're moving. This is used in the checkImage function
       direction = "rewind";
 			if (settings.frames[frame].type === "waypoint") {
-				self.children(".overlay").fadeOut(250); // hide all the overlays before the animation starts
+				self.children(".imageOverlay").fadeOut(250); // hide any imageOverlays before the animation starts
 				self.children(".label").remove(); // remove all labels
 				self.children(".satCredit").text(settings.frames[frame].satCredit); // update satelitte imagery credit
 
@@ -115,12 +152,24 @@
 
 		}
 
-		//binding clicks
+		/*
+		------------------------------------------------------
+		BINDING CLICKS
+		------------------------------------------------------
+		*/
+
 		function bindClick() {
 			self.children(".flyButton").bind("click", function() {
 				return checkDirection($(this));
 			});
 		}
+
+
+		/*
+		------------------------------------------------------
+		CHECKING IF CURRENT FRAME HAS OVERLAYS
+		------------------------------------------------------
+		*/
 
 		// checking if current frame has overlays and building out the overlays
 		function checkOverlays() {
@@ -137,6 +186,13 @@
 			}
 		}
 
+
+		/*
+		------------------------------------------------------
+		CHECKING IF CURRENT FRAME HAS LABELS
+		------------------------------------------------------
+		*/
+
 		// checking if the current frame has labels, and building out those labels
 		function checkLabels() {
 			if (settings.frames[frame].labels !== undefined) {
@@ -149,6 +205,13 @@
 				});
 			}
 		}
+
+
+		/*
+		------------------------------------------------------
+		CHECKING IF CURRENT FRAME HAS IMAGES
+		------------------------------------------------------
+		*/
 
 		// checking if the current frame is an image
 		function checkImage() {
@@ -176,10 +239,22 @@
 			}
 		}
 
+
+		/*
+		------------------------------------------------------
+		PRELOADING IMAGES
+		------------------------------------------------------
+		*/
+
     // preloading image function
     $.preloadImages = function() {
       $("<img />").attr("src", arguments[0]);
     };
+
+
+		//////////////////////////////////////////////////////
+		//// RUNNING OF FUNCTIONS ////////////////////////////
+		//////////////////////////////////////////////////////
 
 		// check the buttons for the first time
 		checkButtons();
