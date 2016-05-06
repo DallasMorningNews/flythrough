@@ -8,6 +8,7 @@
 .flythrough {
   position: relative;
   margin: 48px 0;
+  min-height: calc((100vw * .5625) + 20px;
 }
 
 .noShow {
@@ -140,6 +141,7 @@
     color: #212121;
     position: relative;
     padding: 0 10px;
+    bottom: auto;
   }
 }
 
@@ -154,7 +156,7 @@
   top: 0;
   left: 0;
   background-color: #fff;
-  width: 50%;
+  width: 30%;
   padding: 20px;
   font-family: Merriweather, Georgia, serif;
   background-color: rgba(15,15,15,.9);
@@ -173,6 +175,7 @@
     background-color: initial;
     padding: 0 20px;
     color: #212121;
+    width: 100%;
   }
 }
 
@@ -249,6 +252,25 @@
   transition: opacity .15s ease-out;
 }
 .flyButton:hover {opacity: 1;}
+
+.buttonHighlight {
+  animation-name: highlight;
+  animation-duration: 1.5s;
+}
+
+@keyframes highlight {
+  0% {opacity: .5;}
+  10% {opacity: .8;}
+  20% {opacity: .5;}
+  30% {opacity: .8;}
+  40% {opacity: .5;}
+  50% {opacity: .8;}
+  60% {opacity: .5;}
+  70% {opacity: .8;}
+  80% {opacity: .5;}
+  90% {opacity: .8;}
+  100% {opacity: .5;}
+}
 
 .play {
   border-top-left-radius: 3px;

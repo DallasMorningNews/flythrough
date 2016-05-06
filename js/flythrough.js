@@ -85,9 +85,8 @@
       direction = "play";
 			// if the frame is a waypoint, play the video to the next waypoint
 			if (settings.frames[frame].type === "waypoint") {
-				self.children(".overlay").fadeOut(250); // hide all the overlays before the animation starts
+				self.children(".imageOverlay").fadeOut(250); // hide all the overlays before the animation starts
 				self.children(".label").remove(); // remove all labels
-				self.children(".satCredit").text(settings.frames[frame].satCredit); // update satelitte imagery credit
 				video[0].play(); // start the animation
 			}
 
@@ -137,7 +136,6 @@
 			if (settings.frames[frame].type === "waypoint") {
 				self.children(".imageOverlay").fadeOut(250); // hide any imageOverlays before the animation starts
 				self.children(".label").remove(); // remove all labels
-				self.children(".satCredit").text(settings.frames[frame].satCredit); // update satelitte imagery credit
 
 				checkOverlays(); // if that frame has an overlay, build it and show it
 				checkLabels(); // if the frame has labels, construct each label and append it to the flythrough
@@ -173,6 +171,7 @@
 
 		// checking if current frame has overlays and building out the overlays
 		function checkOverlays() {
+			self.children(".satCredit").fadeIn(250).text(settings.frames[frame].satCredit); // update satelitte imagery credit
 			if (settings.frames[frame].overlayHead !== undefined ) {
 				self.find(".textOverlay h4").html(settings.frames[frame].overlayHead);
 			}
@@ -216,6 +215,7 @@
 		// checking if the current frame is an image
 		function checkImage() {
 			if (settings.frames[frame].type === "image") {
+					self.children(".satCredit").fadeOut(250);
 					self.children(".textOverlay").fadeOut(250); // hide all the overlays
 					self.children(".label").remove(); //remove all labels
 
@@ -278,6 +278,8 @@
 			if (settings.frames[frame].satCredit !== undefined) {
 				self.children(".satCredit").text(settings.frames[frame].satCredit); // update the sat credit with the first slide
 			}
+
+			$(".play").addClass("buttonHighlight");
 			checkOverlays(); // add overlays, if any
 			checkLabels(); // add labels, if any
 			checkImage(); // add image, if any
