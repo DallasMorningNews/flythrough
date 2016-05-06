@@ -265,6 +265,7 @@
 
 		// attach the click event to the flythrough buttons that adavances or rewinds the flythrough
 		this.children(".flyButton").bind("click", function() {
+
 			return checkDirection($(this));
 		});
 
@@ -273,13 +274,21 @@
 
 			self.find(".titleCard").remove(); // remove title card
 
+
 			video[0].currentTime = settings.frames[frame].end; // set the video to the end of the first frame so it's ready to move when the play button is clicked
 
 			if (settings.frames[frame].satCredit !== undefined) {
 				self.children(".satCredit").text(settings.frames[frame].satCredit); // update the sat credit with the first slide
 			}
 
-			$(".play").addClass("buttonHighlight");
+			//add highlighting class animation to the play button to make it standout
+			self.find(".play").addClass("buttonHighlight");
+
+			//remove the highlight class animation so it doesn't show up again later
+			setTimeout(function() {
+				self.find(".play").removeClass("buttonHighlight");
+			}, 2000);
+
 			checkOverlays(); // add overlays, if any
 			checkLabels(); // add labels, if any
 			checkImage(); // add image, if any
