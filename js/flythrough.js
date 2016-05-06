@@ -11,7 +11,7 @@
 			frames: []
 		}, frameObj);
 
-		if (frames.length === 0) {
+		if (settings.frames.length === 0) {
 			console.error("Frames must be an array with at least one object.");
 		}
 
