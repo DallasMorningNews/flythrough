@@ -171,7 +171,9 @@
 
 		// checking if current frame has overlays and building out the overlays
 		function checkOverlays() {
-			self.children(".satCredit").fadeIn(250).text(settings.frames[frame].satCredit); // update satelitte imagery credit
+			if ($(window).width() <= 800) {
+				self.children(".satCredit").fadeIn(250).text(settings.frames[frame].satCredit); // update satelitte imagery credit
+			}
 			if (settings.frames[frame].overlayHead !== undefined ) {
 				self.find(".textOverlay h4").html(settings.frames[frame].overlayHead);
 			}
