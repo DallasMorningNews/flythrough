@@ -29,7 +29,7 @@
 */
 
 .titleCard {
-  background-color: rgba(33,33,33,.95);
+  background-color: rgba(15,15,15,.9);
   position: absolute;
   top: 0;
   left: 0;
@@ -45,12 +45,17 @@
 .titleCard h3 {
   font-size: 42px;
   line-height: 48px;
+  max-width: 800px;
+  margin: 0 auto 24px;
 }
 
 .titleCard p {
   font-size: 16px;
   line-height: 24px;
   margin-bottom: 24px;
+  max-width: 800px;
+  margin: 0 auto 24px;
+
 }
 
 .titleButton {
@@ -118,6 +123,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
 }
 
 .imageOverlay img {
