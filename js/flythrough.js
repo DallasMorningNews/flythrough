@@ -19,10 +19,10 @@
 		////  VARIABLE SETUP /////////////////////////////////
 		//////////////////////////////////////////////////////
 
-		var video = this.children(".flyVideo");
+		var video = this.children(".fly-video");
 		var frame = 0;
 		var self = this;
-    var direction = "";
+    	var direction = "";
 
 
 
@@ -40,7 +40,7 @@
 		// determine if we are going forward or backwards
 		function checkDirection(thisObj) {
 			// unbind the click function from the buttons to prevent clicks in mid animation
-			self.children(".flyButton").unbind("click");
+			self.children(".fly-button").unbind("click");
 
 			//check for direction based on button id
 			if (thisObj.hasClass("play") === true) {
@@ -69,7 +69,7 @@
 			} else if (frame === (settings.frames.length - 1)) {
 				self.children(".play").hide(); // hide the play button on the last frame
 			} else {
-				self.children(".flyButton").show(); //if on any frame other than the first or last, show both buttons
+				self.children(".fly-button").show(); //if on any frame other than the first or last, show both buttons
 			}
 		}
 
@@ -85,7 +85,7 @@
       direction = "play";
 			// if the frame is a waypoint, play the video to the next waypoint
 			if (settings.frames[frame].type === "waypoint") {
-				self.children(".imageOverlay").fadeOut(250); // hide all the overlays before the animation starts
+				self.children(".image-overlay").fadeOut(250); // hide all the overlays before the animation starts
 				self.children(".label").remove(); // remove all labels
 				video[0].play(); // start the animation
 			}
@@ -134,7 +134,7 @@
       // set the direction that we're moving. This is used in the checkImage function
       direction = "rewind";
 			if (settings.frames[frame].type === "waypoint") {
-				self.children(".imageOverlay").fadeOut(250); // hide any imageOverlays before the animation starts
+				self.children(".image-overlay").fadeOut(250); // hide any imageOverlays before the animation starts
 				self.children(".label").remove(); // remove all labels
 
 				checkOverlays(); // if that frame has an overlay, build it and show it
@@ -157,7 +157,7 @@
 		*/
 
 		function bindClick() {
-			self.children(".flyButton").bind("click", function() {
+			self.children(".fly-button").bind("click", function() {
 				return checkDirection($(this));
 			});
 		}
@@ -172,18 +172,18 @@
 		// checking if current frame has overlays and building out the overlays
 		function checkOverlays() {
 			if ($(window).width() <= 800) {
-				self.children(".satCredit").fadeIn(250).text(settings.frames[frame].satCredit); // update satelitte imagery credit
+				self.children(".sat-credit").fadeIn(250).text(settings.frames[frame].satCredit); // update satelitte imagery credit
 			}
 			if (settings.frames[frame].overlayHead !== undefined ) {
-				self.find(".textOverlay h4").html(settings.frames[frame].overlayHead);
+				self.find(".text-overlay h4").html(settings.frames[frame].overlayHead);
 			}
 
 			if (settings.frames[frame].overlayText !== undefined) {
-				self.find(".textOverlay p").html(settings.frames[frame].overlayText);
+				self.find(".text-overlay p").html(settings.frames[frame].overlayText);
 			}
 
 			if (settings.frames[frame].overlayHead !== undefined || settings.frames[frame].overlayText !== undefined) {
-				self.children(".textOverlay").fadeIn(250);
+				self.children(".text-overlay").fadeIn(250);
 			}
 		}
 
@@ -217,20 +217,20 @@
 		// checking if the current frame is an image
 		function checkImage() {
 			if (settings.frames[frame].type === "image") {
-					self.children(".satCredit").fadeOut(250);
-					self.children(".textOverlay").fadeOut(250); // hide all the overlays
+					self.children(".sat-credit").fadeOut(250);
+					self.children(".text-overlay").fadeOut(250); // hide all the overlays
 					self.children(".label").remove(); //remove all labels
 
-					self.find(".imageOverlay img").attr("src", settings.frames[frame].imagePath).attr("alt", settings.frames[frame].cutline); // update the image overlay img tag with the src path and alt text
+					self.find(".image-overlay img").attr("src", settings.frames[frame].imagePath).attr("alt", settings.frames[frame].cutline); // update the image overlay img tag with the src path and alt text
 
 					if (settings.frames[frame].cutline !== undefined) {
-						self.find(".imageOverlay .cutline").html(settings.frames[frame].cutline); // update the image overlay cutline
+						self.find(".image-overlay .cutline").html(settings.frames[frame].cutline); // update the image overlay cutline
 					}
 
           if (direction === "play" && settings.frames[frame - 1].type !== "image") {
-				    self.children(".imageOverlay").fadeIn(250); // display the image overlay
+				    self.children(".image-overlay").fadeIn(250); // display the image overlay
           } else if (direction === "rewind" && settings.frames[frame + 1].type !== "image") {
-            self.children(".imageOverlay").fadeIn(250); // display the image overlay
+            self.children(".image-overlay").fadeIn(250); // display the image overlay
           }
 
 
@@ -266,29 +266,29 @@
 
 
 		// attach the click event to the flythrough buttons that adavances or rewinds the flythrough
-		this.children(".flyButton").bind("click", function() {
+		this.children(".fly-button").bind("click", function() {
 
 			return checkDirection($(this));
 		});
 
 		// clicking into the flythrough through the titlecard
-		this.find(".titleButton").click(function() {
+		this.find(".title-button").click(function() {
 
-			self.find(".titleCard").remove(); // remove title card
+			self.find(".title-card").remove(); // remove title card
 
 
 			video[0].currentTime = settings.frames[frame].end; // set the video to the end of the first frame so it's ready to move when the play button is clicked
 
 			if (settings.frames[frame].satCredit !== undefined) {
-				self.children(".satCredit").text(settings.frames[frame].satCredit); // update the sat credit with the first slide
+				self.children(".sat-credit").text(settings.frames[frame].satCredit); // update the sat credit with the first slide
 			}
 
 			//add highlighting class animation to the play button to make it standout
-			self.find(".play").addClass("buttonHighlight");
+			self.find(".play").addClass("button-highlight");
 
 			//remove the highlight class animation so it doesn't show up again later
 			setTimeout(function() {
-				self.find(".play").removeClass("buttonHighlight");
+				self.find(".play").removeClass("button-highlight");
 			}, 2000);
 
 			checkOverlays(); // add overlays, if any

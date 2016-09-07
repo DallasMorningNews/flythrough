@@ -3,7 +3,7 @@
 /// FLYTHROUGHS //////////////////////
 //////////////////////////////////////
 */
-.flyVideo {width: 100%;}
+.fly-video {width: 100%;}
 
 .flythrough {
   position: relative;
@@ -11,7 +11,7 @@
   min-height: calc((100vw * .5625) + 20px;
 }
 
-.noShow {
+.no-show {
   display: none;
 }
 
@@ -28,7 +28,7 @@
 // ----------------------------------
 */
 
-.titleCard {
+.title-card {
   background-color: rgba(15,15,15,.9);
   position: absolute;
   top: 0;
@@ -36,20 +36,20 @@
   width: 100%;
   height: 56.25vw;
   color: #fff;
-  font-family: Merriweather, Georgia, serif;
+  font-family: "PT Serif", Georgia, serif;
   text-align: center;
   padding: 12vw;
   z-index: 110;
 }
 
-.titleCard h3 {
+.title-card h3 {
   font-size: 42px;
   line-height: 48px;
   max-width: 800px;
   margin: 0 auto 24px;
 }
 
-.titleCard p {
+.title-card p {
   font-size: 16px;
   line-height: 24px;
   margin-bottom: 24px;
@@ -58,9 +58,8 @@
 
 }
 
-.titleButton {
+.title-button {
   width: 150px;
-  border: none;
   font-size: 18px;
   line-height: 36px;
   text-transform: uppercase;
@@ -75,39 +74,39 @@
   cursor: pointer;
 }
 
-.titleButton:hover {
+.title-button:hover {
   background-color: #fff;
   color: rgb(22,22,22);
 }
 
-.titleButton:focus {
+.title-button:focus {
   outline: 0;
 }
 
 @media (max-width: 800px) {
-  .titleCard {
+  .title-card {
     min-height: 58.25vw;
     height: auto;
     padding: 5vw;
     background-color: rgba(33,33,33,1);
   }
-  .titleCard h3 {
+  .title-card h3 {
     font-size: 30px;
     line-height: 36px;
   }
-  .titleCard p {
+  .title-card p {
     font-size: 12px;
     line-height: 18px;
     margin-bottom: 15px;
   }
-  .titleButton {
+  .title-button {
     font-size: 14px;
     line-height: 28px;
   }
 }
 
 @media (max-width: 400px) {
-  .titleCard h3 {
+  .title-card h3 {
     font-size: 24px;
     line-height: 30px;
   }
@@ -119,18 +118,18 @@
 // ----------------------------------
 */
 
-.imageOverlay {
+.image-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
 }
 
-.imageOverlay img {
+.image-overlay img {
   width: 100%;
 }
 
-.imageOverlay .cutline {
+.image-overlay .cutline {
   background-color: #212121;
   width: 100%;
   padding: 10px;
@@ -142,8 +141,8 @@
 }
 
 @media (max-width: 800px) {
-  .imageOverlay .cutline {
-    background-color: initial;
+  .image-overlay .cutline {
+    background-color: transparent;
     color: #212121;
     position: relative;
     padding: 0 10px;
@@ -157,28 +156,28 @@
 // ----------------------------------
 */
 
-.textOverlay {
+.text-overlay {
   position: absolute;
   top: 0;
   left: 0;
   background-color: #fff;
   width: 30%;
   padding: 20px;
-  font-family: Merriweather, Georgia, serif;
+  font-family: "PT Serif", Georgia, serif;
   background-color: rgba(15,15,15,.9);
   color: white;
 }
 
-.textOverlay p {
-  font-family: "Open Sans", Arial, sans-serif;
+.text-overlay p {
+  font-family: "Gotham A", "Gotham B", Arial, sans-serif;
   font-size: 12px;
   line-height: 15px;
 }
 
 @media (max-width: 800px) {
-  .textOverlay {
+  .text-overlay {
     position: relative;
-    background-color: initial;
+    background-color: transparent;
     padding: 0 20px;
     color: #212121;
     width: 100%;
@@ -220,7 +219,7 @@
 // satellite credits
 // ----------------------------------
 */
-.flythrough .satCredit {
+.flythrough .sat-credit {
   font-size: 10px;
   line-height: 12px;
   margin-bottom: 10px;
@@ -230,7 +229,7 @@
 }
 
 @media (max-width: 800px) {
-  .flythrough .satCredit {
+  .flythrough .sat-credit {
     display: block;
   }
 }
@@ -241,7 +240,7 @@
 //-------------------------
 */
 
-.flyButton {
+.fly-button {
   width: 50px;
   height: 80px;
   border: none;
@@ -257,9 +256,9 @@
   -o-transition: opacity .15s ease-out;
   transition: opacity .15s ease-out;
 }
-.flyButton:hover {opacity: 1;}
+.fly-button:hover {opacity: 1;}
 
-.buttonHighlight {
+.button-highlight {
   animation-name: highlight;
   animation-duration: 1.5s;
 }
@@ -291,7 +290,7 @@
 }
 
 @media (max-width: 800px) {
-  .flyButton {
+  .fly-button {
     width: 25px;
     height: 40px;
     margin-top: -20px;
